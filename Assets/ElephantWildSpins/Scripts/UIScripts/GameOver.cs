@@ -19,12 +19,12 @@ public class GameOver : MonoBehaviour {
 			bestScore = score;
 		}
 
-		txtScore.text = "Total Score : <color=yellow>" + string.Format("{0:#,#.}", score.ToString("0")) + "";
+		txtScore.text = string.Format("{0:#,#.}", score.ToString("0")) + "";
 		txtBestScore.text = string.Format("{0:#,#.}", bestScore.ToString("0"));
 		txtCoinReward.text = string.Format("{0:#,#.}", coinReward.ToString("0"));
 
 		CurrencyManager.Instance.AddCoinBalance (coinReward);
-		StaticHelper.coins += coinReward;
+		//StaticHelper.coins += coinReward;
 	}
 
 	public void OnHomeButtonPressed()

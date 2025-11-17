@@ -62,6 +62,6 @@ public class ShopMansion : MonoBehaviour
             else
                 noCoinPanel.SetActive(true);
         }
-        //SoundMansion.instance.PlaySound(0);
+        AudioManager.Instance.PlayButtonClickSound();
     }
 }

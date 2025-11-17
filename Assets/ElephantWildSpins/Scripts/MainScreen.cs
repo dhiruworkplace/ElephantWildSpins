@@ -16,7 +16,6 @@ public class MainScreen : MonoBehaviour
     public Button acceptBtn;
 
     public GameObject timerImg;
-    public GameObject rewardObj;
     public GameObject claimBtn;
     public TextMeshProUGUI questTimer;
     private List<int> rewards = new List<int>() { 1000, 2000, 3000, 4000, 5000 };
@@ -31,24 +30,24 @@ public class MainScreen : MonoBehaviour
 
     public void SetCoins()
     {
-        if (CurrencyManager.Instance != null)
-        {
-            int coinBalance = CurrencyManager.Instance.GetCoinBalance();
-            txtCoinBalance.text = string.Format("{0:#,#.}", coinBalance);
-        }        
+        //if (CurrencyManager.Instance != null)
+        //{
+        //    int coinBalance = CurrencyManager.Instance.GetCoinBalance();
+        //}
+        txtCoinBalance.text = StaticHelper.coins.ToString();
     }
 
     void Start()
     {
         SetCoins();
 
-        if (!PlayerPrefs.HasKey("agreement"))
-        {
-            PlayerPrefs.SetInt("agreement", 1);
-            PlayerPrefs.Save();
-            agreementPanel.SetActive(true);
-        }
-        InvokeRepeating(nameof(CheckQuest), 0f, 1f);
+        //if (!PlayerPrefs.HasKey("agreement"))
+        //{
+        //    PlayerPrefs.SetInt("agreement", 1);
+        //    PlayerPrefs.Save();
+        //    agreementPanel.SetActive(true);
+        //}
+        //InvokeRepeating(nameof(CheckQuest), 0f, 1f);
     }
 
     private void StopTimer()
@@ -65,7 +64,6 @@ public class MainScreen : MonoBehaviour
             //PlayerPrefs.Save();
 
             timerImg.SetActive(false);
-            rewardObj.SetActive(true);
             claimBtn.SetActive(true);
             questTimer.text = "Claim";
             StopTimer();
@@ -80,7 +78,6 @@ public class MainScreen : MonoBehaviour
         {
             StopTimer();
             timerImg.SetActive(false);
-            rewardObj.SetActive(true);
             claimBtn.SetActive(true);
             questTimer.text = "Claim";
         }
@@ -91,9 +88,8 @@ public class MainScreen : MonoBehaviour
         PlayerPrefs.SetString("lastSpin", System.DateTime.Now.AddHours(24).ToString());
         PlayerPrefs.Save();
         timerImg.SetActive(true);
-        rewardObj.SetActive(false);
         claimBtn.SetActive(false);
-
+            
         InvokeRepeating(nameof(CheckQuest), 0f, 1f);
     }
 
@@ -127,7 +123,7 @@ public class MainScreen : MonoBehaviour
 
     public void Click()
     {
-        
+        AudioManager.Instance.PlayButtonClickSound();
     }
 
     public void OnPlayButtonPressed()

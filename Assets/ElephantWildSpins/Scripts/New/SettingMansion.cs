@@ -17,15 +17,17 @@ public class SettingMansion : MonoBehaviour
         if (StaticHelper.music.Equals(1))
         {
             StaticHelper.music = 0;
-            //SoundMansion.instance.PauseMusic();
+            AudioManager.Instance.isMusicEnabled = false;
+            BackgroundMusic.Instance.PauseBGMusic();
         }
         else
         {
             StaticHelper.music = 1;
-            //SoundMansion.instance.PlayMusic();
+            AudioManager.Instance.isMusicEnabled = true;
+            BackgroundMusic.Instance.StartBGMusic();
         }
         musicOn.SetActive(StaticHelper.music.Equals(1));
-        //SoundMansion.instance.PlaySound(0);
+        AudioManager.Instance.PlayButtonClickSound();
     }
 
     public void SetSound()
@@ -33,12 +35,14 @@ public class SettingMansion : MonoBehaviour
         if (StaticHelper.sound.Equals(1))
         {
             StaticHelper.sound = 0;
+            AudioManager.Instance.isSoundEnabled = false;
         }
         else
         {
             StaticHelper.sound = 1;
+            AudioManager.Instance.isSoundEnabled = true;
         }
         soundOn.SetActive(StaticHelper.sound.Equals(1));
-        //SoundMansion.instance.PlaySound(0);
+        AudioManager.Instance.PlayButtonClickSound();
     }
 }

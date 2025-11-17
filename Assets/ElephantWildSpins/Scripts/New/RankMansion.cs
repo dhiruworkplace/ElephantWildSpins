@@ -6,8 +6,7 @@ public class RankMansion : MonoBehaviour
 {
     public Transform parent;
     public Rank playerDetail;
-    public Sprite panel;
-    public Sprite rankImg;
+    public Rank[] topThree;
 
     public List<string> names = new List<string>()
     {
@@ -104,20 +103,14 @@ public class RankMansion : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            Rank pd = Instantiate(playerDetail, parent);
-            pd.SetData(players[i].me, (i + 1), players[i].name, players[i].points);
-
-            if (i == 0)
+            if (i < 3)
             {
-                pd.crown.SetActive(true);
-                pd.noText.gameObject.SetActive(false);
+                topThree[i].SetData(players[i].me, (i + 1), players[i].name, players[i].points);
             }
-            if (players[i].me)
+            else
             {
-                pd.noText.color = Color.white;
-                pd.playerName.color = new Color32(3, 55, 10, 255);
-                pd.panel.sprite = panel;
-                pd.rankImg.sprite = rankImg;
+                Rank pd = Instantiate(playerDetail, parent);
+                pd.SetData(players[i].me, (i + 1), players[i].name, players[i].points);
             }
         }
     }

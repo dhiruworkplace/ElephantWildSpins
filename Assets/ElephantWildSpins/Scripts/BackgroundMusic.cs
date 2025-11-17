@@ -25,17 +25,16 @@ public class BackgroundMusic : Singleton<BackgroundMusic>
 		AudioManager.OnMusicStatusChangedEvent += OnMusicStatusChangedEvent;
 	}
 
-
 	void OnDisable()
 	{
 		//Unregister Audio status event
 		AudioManager.OnMusicStatusChangedEvent -= OnMusicStatusChangedEvent;
 	}
 
-	void StartBGMusic()
+	public void StartBGMusic()
 	{
 		///Start playing music is music setting is enabled.
-		if (AudioManager.Instance.isMusicEnabled && !CurrentAudioSource.isPlaying ) {
+		if (StaticHelper.music.Equals(1) && !CurrentAudioSource.isPlaying ) {
 			CurrentAudioSource.clip = BGMusicMain;
 			CurrentAudioSource.loop = true;
 			CurrentAudioSource.Play ();

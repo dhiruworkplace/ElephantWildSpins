@@ -320,7 +320,7 @@ public class GamePlay : Singleton<GamePlay>, IPointerDownHandler, IPointerUpHand
 		else
 		{
 			BlockShapeSpawner.Instance.FillShapeContainer();
-			ScoreManager.Instance.AddScore(10 * placingShapeBlockCount);
+			ScoreManager.Instance.AddScore(placingShapeBlockCount);
 		}
 
 		if (GameController.gameMode == GameMode.BLAST || GameController.gameMode == GameMode.CHALLENGE)
@@ -422,28 +422,28 @@ public class GamePlay : Singleton<GamePlay>, IPointerDownHandler, IPointerUpHand
 		if (TotalBreakingLines == 1)
 		{
 			AudioManager.Instance.PlaySound(lineClear1);
-			ScoreManager.Instance.AddScore(100 + (placingShapeBlockCount * 10));
+			ScoreManager.Instance.AddScore(10 + (placingShapeBlockCount));
 		}
 		else if (TotalBreakingLines == 2)
 		{
 			AudioManager.Instance.PlaySound(lineClear2);
-			ScoreManager.Instance.AddScore(300 + (placingShapeBlockCount * 10));
+			ScoreManager.Instance.AddScore(30 + (placingShapeBlockCount));
 		}
 		else if (TotalBreakingLines == 3)
 		{
 			AudioManager.Instance.PlaySound(lineClear3);
-			ScoreManager.Instance.AddScore(600 + (placingShapeBlockCount * 10));
+			ScoreManager.Instance.AddScore(60 + (placingShapeBlockCount));
 		}
 		else if (TotalBreakingLines >= 4)
 		{
 			AudioManager.Instance.PlaySound(lineClear4);
 			if (TotalBreakingLines == 4)
 			{
-				ScoreManager.Instance.AddScore(1000 + (placingShapeBlockCount * 10));
+				ScoreManager.Instance.AddScore(100 + (placingShapeBlockCount));
 			}
 			else
 			{
-				ScoreManager.Instance.AddScore((300 * TotalBreakingLines) + (placingShapeBlockCount * 10));
+				ScoreManager.Instance.AddScore((30 * TotalBreakingLines) + (placingShapeBlockCount));
 			}
 		}
 
@@ -901,6 +901,7 @@ public class GamePlay : Singleton<GamePlay>, IPointerDownHandler, IPointerUpHand
 			title = "Challenge";
 
 		gameModeTxt.text = title;
+		gameModeTxt.text = "Level " + StaticHelper.selectedLevel;
 	}
 	#endregion
 }

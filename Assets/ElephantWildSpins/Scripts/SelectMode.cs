@@ -59,6 +59,12 @@ public class SelectMode : MonoBehaviour
 		}
 	}
 
+	public void OnPlay()
+	{
+		StaticHelper.selectedLevel = StaticHelper.saveLevel;
+		OnClassicButtonPressed();
+	}
+
 	public void OnClassicButtonPressed()
 	{
 		StartCoroutine(nameof(classicModeData));

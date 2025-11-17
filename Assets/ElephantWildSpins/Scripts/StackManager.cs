@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class StackManager : Singleton<StackManager> 
+public class StackManager : Singleton<StackManager>
 {
 	List<string> screenStack = new List<string>();
 
@@ -17,6 +17,7 @@ public class StackManager : Singleton<StackManager>
 	public GameObject purchaseSuccessScreen;
 	public GameObject purchaseFailScreen;
 	public GameObject quitConfirmGameScreen;
+	public GameObject gameWin;
 
 	GameObject gamePlayScreen;
 
@@ -30,42 +31,42 @@ public class StackManager : Singleton<StackManager>
 	}
 	public GameObject SpawnUIScreen(string name)
 	{
-		GameObject thisScreen = (GameObject)Instantiate (Resources.Load ("Prefabs/UIScreens/" + name));
+		GameObject thisScreen = (GameObject)Instantiate(Resources.Load("Prefabs/UIScreens/" + name));
 		thisScreen.name = name;
-		thisScreen.transform.SetParent (GameController.Instance.UICanvas.transform);
+		thisScreen.transform.SetParent(GameController.Instance.UICanvas.transform);
 		thisScreen.transform.localPosition = Vector3.zero;
 		thisScreen.transform.localScale = Vector3.one;
-		thisScreen.GetComponent<RectTransform> ().sizeDelta = Vector3.zero;
+		thisScreen.GetComponent<RectTransform>().sizeDelta = Vector3.zero;
 		thisScreen.Activate();
 		return thisScreen;
 	}
 
 	public void ActivateGamePlay()
 	{
-		if(gamePlayScreen == null)
+		if (gamePlayScreen == null)
 		{
-			gamePlayScreen = (GameObject)Instantiate (Resources.Load ("Prefabs/UIScreens/GamePlay"));
+			gamePlayScreen = (GameObject)Instantiate(Resources.Load("Prefabs/UIScreens/GamePlay"));
 			gamePlayScreen.name = "GamePlay";
-			gamePlayScreen.transform.SetParent (GameController.Instance.UICanvas.transform);
+			gamePlayScreen.transform.SetParent(GameController.Instance.UICanvas.transform);
 			gamePlayScreen.transform.localPosition = Vector3.zero;
 			gamePlayScreen.transform.localScale = Vector3.one;
-			gamePlayScreen.GetComponent<RectTransform> ().sizeDelta = Vector3.zero;
+			gamePlayScreen.GetComponent<RectTransform>().sizeDelta = Vector3.zero;
 
-            // Set anchors to stretch both horizontally and vertically
-            gamePlayScreen.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
-            gamePlayScreen.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
+			// Set anchors to stretch both horizontally and vertically
+			gamePlayScreen.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
+			gamePlayScreen.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
 
-            // Set offsets to zero (so it fills the parent)
-            gamePlayScreen.GetComponent<RectTransform>().offsetMin = Vector2.zero;  // Left/Bottom
-            gamePlayScreen.GetComponent<RectTransform>().offsetMax = Vector2.zero;  // Right/Top
+			// Set offsets to zero (so it fills the parent)
+			gamePlayScreen.GetComponent<RectTransform>().offsetMin = Vector2.zero;  // Left/Bottom
+			gamePlayScreen.GetComponent<RectTransform>().offsetMax = Vector2.zero;  // Right/Top
 
-            gamePlayScreen.Activate();
+			gamePlayScreen.Activate();
 		}
 	}
 
 	public void DeactivateGamePlay()
 	{
-		if(gamePlayScreen != null)
+		if (gamePlayScreen != null)
 		{
 			Destroy(gamePlayScreen);
 		}
@@ -73,7 +74,7 @@ public class StackManager : Singleton<StackManager>
 
 	public void Push(string screenName)
 	{
-		if(!screenStack.Contains(screenName))
+		if (!screenStack.Contains(screenName))
 		{
 			screenStack.Add(screenName);
 		}
@@ -81,16 +82,16 @@ public class StackManager : Singleton<StackManager>
 
 	public string Peek()
 	{
-		if(screenStack.Count > 0)
+		if (screenStack.Count > 0)
 		{
-			return screenStack[screenStack.Count-1];
+			return screenStack[screenStack.Count - 1];
 		}
 		return "";
 	}
 
 	public void Pop(string screenName)
 	{
-		if(screenStack.Contains(screenName))
+		if (screenStack.Contains(screenName))
 		{
 			screenStack.Remove(screenName);
 		}
@@ -98,68 +99,74 @@ public class StackManager : Singleton<StackManager>
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if(InputManager.Instance.canInput())
+			if (InputManager.Instance.canInput())
 			{
-				if(screenStack.Count > 0) {
+				if (screenStack.Count > 0)
+				{
 					ProcessBackButton(Peek());
 				}
 			}
 		}
 	}
-	
-    
+
+
 	void ProcessBackButton(string currentScreen)
 	{
 		Debug.Log(currentScreen);
-		switch(currentScreen)
+		switch (currentScreen)
 		{
 			case "MainScreen":
-			quitConfirmGameScreen.Activate();
-			break;
+				quitConfirmGameScreen.Activate();
+				break;
 
 			case "SelectMode":
-			selectModeScreen.Deactivate();
-			break;
+				selectModeScreen.Deactivate();
+				break;
 
 			case "Quit-Confirm-Game":
-			quitConfirmGameScreen.Deactivate();
-			break;
+				quitConfirmGameScreen.Deactivate();
+				break;
 
 			case "Shop":
-			//shopScreen.Deactivate();
-			break;
+				//shopScreen.Deactivate();
+				break;
 
 			case "Settings":
-			settingsScreen.Deactivate();
-			break;
+				settingsScreen.Deactivate();
+				break;
 
 			case "SelectLanguage":
-			selectLanguageScreen.Deactivate();
-			break;
+				selectLanguageScreen.Deactivate();
+				break;
 
 			case "GamePlay":
-			pauseSceen.Activate();
-			break;
+				pauseSceen.Activate();
+				break;
 
 			case "Paused":
-			pauseSceen.Deactivate();
-			break;
+				pauseSceen.Deactivate();
+				break;
 
 			case "GameOver":
-			gameOverScreen.Deactivate();
-			mainMenu.Activate();
-			break;
+				gameOverScreen.Deactivate();
+				mainMenu.Activate();
+				break;
 
 			case "PurchaseFail":
-			purchaseFailScreen.Deactivate();
-			break;
+				purchaseFailScreen.Deactivate();
+				break;
 
 			case "PurchaseSuccess":
-			purchaseSuccessScreen.Deactivate();
-			shopScreen.Deactivate();
-			break;
+				purchaseSuccessScreen.Deactivate();
+				shopScreen.Deactivate();
+				break;
 		}
+	}
+
+	public void ShowGameWin()
+	{
+		gameWin.SetActive(true);
 	}
 }
