@@ -167,6 +167,12 @@ public class StackManager : Singleton<StackManager>
 
 	public void ShowGameWin()
 	{
+		StartCoroutine(ShowGameWin(1f));
+	}
+
+	private IEnumerator ShowGameWin(float wait)
+	{
+		yield return new WaitForSeconds(wait);
 		gameWin.SetActive(true);
 	}
 }

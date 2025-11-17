@@ -262,9 +262,11 @@ public class GamePlay : Singleton<GamePlay>, IPointerDownHandler, IPointerUpHand
 	{
 		if (highlightingBlocks != null && highlightingBlocks.Count > 0)
 		{
+			string ltr = currentShape.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text;
 			foreach (Block c in highlightingBlocks)
 			{
 				c.SetBlockImage(currentShape.blockImage, currentShape.ShapeID);
+				c.numText.text = ltr;
 			}
 		}
 		AudioManager.Instance.PlaySound(blockPlaceSound);

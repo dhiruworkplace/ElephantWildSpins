@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 #if HBDOTween
 using DG.Tweening;
@@ -28,6 +30,8 @@ public class Block : MonoBehaviour
 
 	//Determines whether this block is normal or bomb.
 	[HideInInspector] public bool isBomb = false;
+
+	public TextMeshProUGUI numText;
 
 	/// <summary>
 	/// Raises the enable event.
@@ -145,6 +149,7 @@ public class Block : MonoBehaviour
 		{
 			blockImage.transform.localScale = Vector3.one;
 			blockImage.sprite = null;
+			numText.text = "";
 		});
 
 		transform.GetComponent<Image> ().DOFade (1, 0.35F).SetDelay (0.3F);

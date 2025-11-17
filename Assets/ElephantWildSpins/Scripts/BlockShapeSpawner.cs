@@ -24,7 +24,7 @@ public class BlockShapeSpawner : Singleton<BlockShapeSpawner>
 	[SerializeField] Transform[] ShapeContainers;
 
 	[SerializeField] private TextMeshProUGUI letterObj;
-	[SerializeField] private List<string> letters = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+	private List<string> letters = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 	List<int> shapeBlockProbabilityPool;
 
@@ -155,7 +155,7 @@ public class BlockShapeSpawner : Singleton<BlockShapeSpawner>
 		#if HBDOTween
 		spawningShapeBlock.transform.DOLocalMove (Vector3.zero, 0.3F);
 #endif
-		//AddLatter(spawningShapeBlock);
+		AddLatter(spawningShapeBlock);
 	}
 
 	private void AddLatter(GameObject shape)
