@@ -29,8 +29,8 @@ public class ShopMansion : MonoBehaviour
 
                 if (StaticHelper.selectedTheme.Equals(i))
                 {
-                    m.transform.GetChild(1).gameObject.SetActive(true);
-                    m.transform.GetChild(2).gameObject.SetActive(false);
+                    //m.transform.GetChild(1).gameObject.SetActive(true);
+                    m.transform.GetChild(2).gameObject.SetActive(true);
                 }
             }
         }

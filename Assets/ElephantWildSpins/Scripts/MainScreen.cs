@@ -25,6 +25,7 @@ public class MainScreen : MonoBehaviour
     
     void OnEnable()
     {
+        StaticHelper.infinite = false;
         SetCoins();
     }
 

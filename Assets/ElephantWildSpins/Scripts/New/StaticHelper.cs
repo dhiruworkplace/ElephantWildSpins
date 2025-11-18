@@ -5,6 +5,7 @@ public static class StaticHelper
     public static int selectedTheme = 0;
     public static int selectedLevel = 1;
     public static bool showLevels;
+    public static bool infinite = false;
 
     public static int badge
     {

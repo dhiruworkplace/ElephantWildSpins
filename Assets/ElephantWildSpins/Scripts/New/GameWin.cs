@@ -21,6 +21,7 @@ public class GameWin : MonoBehaviour
         {
             AudioManager.Instance.PlayButtonClickSound();
             StackManager.Instance.mainMenu.Activate();
+            StackManager.Instance.DeactivateGamePlay();
             gameObject.Deactivate();
         }
     }

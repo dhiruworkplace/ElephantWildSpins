@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour 
 {
 	[SerializeField]
-	private int MaxTimeCounter = 60;
+	private int MaxTimeCounter = 180;
 
-	float timeRemaining = 60.0F;
+	float timeRemaining = 180.0F;
 
 	[SerializeField] private Image imageProgress;
 

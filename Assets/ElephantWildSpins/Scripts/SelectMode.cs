@@ -65,6 +65,11 @@ public class SelectMode : MonoBehaviour
 		OnClassicButtonPressed();
 	}
 
+	public void SelectInfinie()
+	{
+		StaticHelper.infinite = true;
+	}
+
 	public void OnClassicButtonPressed()
 	{
 		StartCoroutine(nameof(classicModeData));

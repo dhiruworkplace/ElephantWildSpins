@@ -476,7 +476,7 @@ public class GamePlay : Singleton<GamePlay>, IPointerDownHandler, IPointerUpHand
 		#region time mode
 		if (GameController.gameMode == GameMode.TIMED || GameController.gameMode == GameMode.CHALLENGE)
 		{
-			timeSlider.AddSeconds(TotalBreakingLines * 5);
+			//timeSlider.AddSeconds(TotalBreakingLines * 5);
 		}
 		#endregion
 	}
@@ -894,16 +894,21 @@ public class GamePlay : Singleton<GamePlay>, IPointerDownHandler, IPointerUpHand
 	{
 		string title = "";
 		if (GameController.gameMode == GameMode.CLASSIC)
-			title = "Classic";
+		{
+			//title = "Classic";
+			if (StaticHelper.infinite)
+				title = "Infinite";
+			else
+				title = "Level " + StaticHelper.selectedLevel;
+		}
 		else if (GameController.gameMode == GameMode.TIMED)
-			title = "Timeless";
+			title = "Time Mode";
 		else if (GameController.gameMode == GameMode.BLAST)
 			title = "Time Bomb";
 		else if (GameController.gameMode == GameMode.CHALLENGE)
 			title = "Challenge";
 
 		gameModeTxt.text = title;
-		gameModeTxt.text = "Level " + StaticHelper.selectedLevel;
 	}
 	#endregion
 }

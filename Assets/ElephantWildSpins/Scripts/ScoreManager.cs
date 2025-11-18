@@ -37,7 +37,7 @@ public class ScoreManager : Singleton<ScoreManager>
 			scoreAnimator.SetActive(true);
 		}
 
-		if (Score >= (100 + StaticHelper.selectedLevel * 25))
+		if (Score >= (100 + StaticHelper.selectedLevel * 25) && (!StaticHelper.infinite && GameController.gameMode == GameMode.CLASSIC))
 		{
 			StaticHelper.coins += 100;
 			StackManager.Instance.ShowGameWin();
