@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/UnityAnalytics.unity
+    guid: e26800b9b70d548fa908236806348257
+  - enabled: 1
     path: Assets/ElephantWildSpins/Scenes/Splash.unity
     guid: a3469efac9e2a9043b1a075a4623d4e1
   - enabled: 1
